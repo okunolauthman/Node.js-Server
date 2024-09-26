@@ -1,0 +1,105 @@
+<!--
+  Okunola Uthman
+  23811675
+  Web Student
+  Description: This code accepts users zip code and uses javascript to interact with the US postal service to auto complete the city and state the user is in. 
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <h3>USPS Zip Code Service</h3>
+
+    <label for="zip5">Zip Code</label>
+    <input type="text" name="zip5" id="zip5" onblur="loadXMLDoc()">
+    <input type="button" value="submit" onclick="loadXMLDoc()">
+
+    <label for="city">City</label>
+    <input type="text" name="city" id="city" readonly>
+
+    <label for="state">State</label>
+    <input type="text" name="state" id="state" maxlength="2" readonly>
+
+
+
+
+    <script>
+        //zip start
+        const userID = '540BMCC02238';
+        let zip5 = document.getElementById('zip5');
+        let city = document.getElementById('city');
+        let state = document.getElementById('state');
+        let invalid = document.getElementById('invalid');
+
+        const loadXMLDoc = function () {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let address = {
+                        zip: null,
+                        city: null,
+                        state: null,
+                        error: null
+                    };
+
+                    address = getXMLDoc(address, this.responseText)
+                    city.value = address.city;
+                    state.value = address.state;
+                    invalid.innerHTML = address.error;
+
+                    if (address.error == null) {
+                        zip5.setAttribute('class', 'form-control');
+                    } else {
+                        zip5.setAttribute('class', 'form-control is-invalid');
+                    }
+
+                }
+            };
+
+            xhttp.open('GET', createRequest(), true);
+            xhttp.send();
+        }
+
+        const createRequest = function () {
+            let req = 'https://secure.shippingapis.com/ShippingApi.dll?API=CityStateLookup&XML=';
+            req += '<CityStateLookupRequest USERID="' + userID + '">';
+            req += '<ZipCode ID="0">';
+            req += '<Zip5>' + zip5.value + '</Zip5>';
+            req += '</ZipCode>';
+            req += '</CityStateLookupRequest>';
+            return req;
+        };
+
+        const getXMLDoc = function (addr, res) {
+            parser = new DOMParser();
+            xmlDoc = parser.parseFromString(res, "text/xml");
+            if (typeof (xmlDoc.getElementsByTagName("City")[0]) != 'undefined') {
+                addr.city = xmlDoc.getElementsByTagName("City")[0].childNodes[0].nodeValue;
+                addr.state = xmlDoc.getElementsByTagName("State")[0].childNodes[0].nodeValue;
+                addr.error = null;
+            } else {
+                addr.city = null;
+                addr.state = null;
+                addr.error = xmlDoc.getElementsByTagName("Description")[0].childNodes[0].nodeValue;
+            }
+            return addr;
+        };
+
+    //zip ends
+    </script>
+</body>
+
+</html>
+

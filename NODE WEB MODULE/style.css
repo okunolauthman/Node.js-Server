@@ -1,0 +1,131 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  nav ul li {
+    margin-right: 20px;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: #f00;
+  }
+  
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .job {
+    margin-bottom: 40px;
+  }
+  
+  .job h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .job h4 {
+    font-size: 18px;
+    font-weight: normal;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .job .date {
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .job ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 0;
+  }
+  
+  .skills ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  .skills li {
+    background-color: #eee;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  .education h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .education h4 {
+    font-size: 18px;
+    font-weight: normal;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .contact ul {
+    list-style: none;
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+  
+  .contact li {
+    margin-bottom: 10px;
+  }
+  
+  .contact li a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .contact li a:hover {
+    color: #f00;
+  }
+  
